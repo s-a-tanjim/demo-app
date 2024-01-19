@@ -1,0 +1,28 @@
+version: '3.9'
+
+name: demo
+
+x-default-logging: &logging
+  driver: "json-file"
+  options:
+    max-size: "50m"
+    max-file: "2"
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  demo-app:
+    image: demo-app:dev
+    user: 1000:1000
+    build:
+      context: .
+      dockerfile: Dockerfile
+    logging: *logging
+    networks:
+      - app-network
+    ports:
+      - ${APP_PORT:-3000}:${APP_PORT:-3000}
+    environment:
+      - APP_PORT=${APP_PORT:-3000}
