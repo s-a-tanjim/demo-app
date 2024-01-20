@@ -21,7 +21,6 @@ export class CdkStack extends cdk.Stack {
 
     const cluster = this.createCluster(this, constructId, vpc);
     const ng1 = this.createNodeGroup(this, constructId, cluster);
-
   }
 
 
