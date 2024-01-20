@@ -5,4 +5,7 @@
 - The predicted ecommerce traffic is from around the world with variable peak hours.
 
 ## Solution
+
+> Cloud provider: AWS
+
 <img src="sys-arch.png">
