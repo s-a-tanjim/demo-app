@@ -17,7 +17,7 @@ async function getTodaysTemperature() {
         ttl: 1000 * 60 * 60 // 1hr
       }
     })
-    return res.data?.dataseries[0]?.temp2m
+    return res.data.dataseries[0].temp2m
   } catch (err) {
     console.error(err)
     return null
