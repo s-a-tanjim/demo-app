@@ -26,3 +26,15 @@ jobs:
         with:
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/demo-app:${{ env.RELEASE_VERSION }}
+      
+      - name: Publish helm
+        uses: peymanmortazavi/eks-helm-deploy@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS__KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+          cluster-name: demo-cluster
+          config-files: helm/values.yaml
+          namespace: dev
+          values: image.tag=${{ env.RELEASE_VERSION }},appSecrets.WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }}
+          name: release_${{ env.RELEASE_VERSION }}
